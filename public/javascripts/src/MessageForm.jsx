@@ -12,7 +12,7 @@ module.exports = React.createClass({
   handleSubmit : function(e){
       e.preventDefault();
       var message = {
-          user : this.props.user,
+          user : this.props.user._json.personaname,
           text : this.state.text
       };
       this.props.onMessageSubmit(message);

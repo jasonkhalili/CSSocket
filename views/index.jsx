@@ -7,11 +7,7 @@ function safeStringify(obj) {
 
 module.exports = React.createClass({
   render: function() {
-    if(typeof this.props.user === 'undefined')
-      var userString = 'no user';
-    else {
-      var userString = safeStringify(this.props.user);
-    }
+    var userString = safeStringify(this.props.user);
     return (
       <html>
         <head>

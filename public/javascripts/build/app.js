@@ -34060,7 +34060,7 @@ module.exports = React.createClass({displayName: "exports",
       socket.emit('send message', message);
   },
   render : function(){
-    if(typeof user === 'undefined') {
+    if(user === 'no user') {
       return (
         React.createElement("div", null, 
           React.createElement(UsersList, {users: this.state.users}), 
@@ -34073,7 +34073,7 @@ module.exports = React.createClass({displayName: "exports",
         React.createElement("div", null, 
           React.createElement(UsersList, {users: this.state.users}), 
           React.createElement(MessageList, {messages: this.state.messages}), 
-          React.createElement(MessageForm, {onMessageSubmit: this.handleMessageSubmit})
+          React.createElement(MessageForm, {onMessageSubmit: this.handleMessageSubmit, user: user})
         )
       );
     }
@@ -34188,7 +34188,8 @@ module.exports = React.createClass({displayName: "exports",
   render: function(){
       return(
           React.createElement("div", {className: "message"}, 
-              this.props.text
+            React.createElement("strong", null, this.props.user), " :", 
+            this.props.text
           )
       );
   }
@@ -34209,7 +34210,7 @@ module.exports = React.createClass({displayName: "exports",
   handleSubmit : function(e){
       e.preventDefault();
       var message = {
-          user : this.props.user,
+          user : this.props.user._json.personaname,
           text : this.state.text
       };
       this.props.onMessageSubmit(message);
@@ -34240,7 +34241,7 @@ module.exports = React.createClass({displayName: "exports",
   render: function(){
       var renderMessage = function(message){
           return (
-            React.createElement(Message, {text: message})
+            React.createElement(Message, {text: message.text, user: message.user})
           );
       };
       return (
@@ -34463,8 +34464,6 @@ React.render(
   React.createElement(Chat, null),
   document.getElementById('chat')
 );
-
-console.log(user);
 
 },{"../../libraries/semantic-ui/dist/semantic.js":245,"./Chat.jsx":233,"./RoundBox.jsx":241,"browser-request":1,"jquery":3,"react/addons":61}],245:[function(require,module,exports){
  /*

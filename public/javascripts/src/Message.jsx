@@ -6,7 +6,8 @@ module.exports = React.createClass({
   render: function(){
       return(
           <div className="message">
-              {this.props.text}
+            <strong>{this.props.user}</strong> :
+            {this.props.text}
           </div>
       );
   }

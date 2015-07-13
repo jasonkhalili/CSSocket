@@ -25,7 +25,7 @@ module.exports = React.createClass({
       socket.emit('send message', message);
   },
   render : function(){
-    if(typeof user === 'undefined') {
+    if(user === 'no user') {
       return (
         <div>
           <UsersList users={this.state.users} />
@@ -38,7 +38,7 @@ module.exports = React.createClass({
         <div>
           <UsersList users={this.state.users} />
           <MessageList messages={this.state.messages} />
-          <MessageForm onMessageSubmit={this.handleMessageSubmit} />
+          <MessageForm onMessageSubmit={this.handleMessageSubmit} user={user}/>
         </div>
       );
     }

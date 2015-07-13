@@ -4,7 +4,7 @@ module.exports = React.createClass({
   componentDidMount: function() {
   },
   render: function() {
-    if(typeof this.props.user === 'undefined'){
+    if(this.props.user === 'no user'){
       return (
         <a className="ui button inverted blue" href="auth/steam">Login</a>
       );

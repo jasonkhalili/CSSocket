@@ -43,7 +43,13 @@ passport.use(new SteamStrategy({
 ));
 
 app.get('/', function(req, res){
-  res.render('index', {user: req.user});
+  if(typeof req.user !== 'undefined'){
+    var user = req.user;
+  }
+  else if(typeof req.user == 'undefined'){
+    var user = "no user";
+  }
+  res.render('index', {user: user});
 });
 
 app.get('/auth/steam',
@@ -60,7 +66,8 @@ app.get('/auth/steam/return',
 io.on('connection', function(socket) {
   socket.on('send message', function(data) {
     socket.broadcast.emit('send message', {
-      message: data
+      text: data.text,
+      user: data.user
     });
   });
 });
