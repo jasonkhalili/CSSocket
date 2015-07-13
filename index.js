@@ -9,16 +9,16 @@ var session = require('express-session');
 var React = require('react/addons');
 var passport = require('passport');
 var SteamStrategy = require('passport-steam').Strategy;
-require('node-jsx').install();
+var reactViews = require('express-react-views');
 
 app.use(session({
   secret: 'keyboard cat'
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.engine('.hbs', exphbs({defaultLayout: 'single', extname: '.hbs'}));
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', '.hbs');
+app.set('view engine', 'jsx');
+app.engine('jsx', reactViews.createEngine());
 app.use(express.static(path.join(__dirname, 'public')));
 
 passport.serializeUser(function(user, done) {
@@ -42,15 +42,8 @@ passport.use(new SteamStrategy({
   }
 ));
 
-// var Base = require('./Base.jsx');
-// var markup = React.renderToString(
-//   Base({
-//     user: 'test'
-//   })
-// );
-
 app.get('/', function(req, res){
-  res.render('index',{markup: req.user});
+  res.render('index');
 });
 
 app.get('/auth/steam',
