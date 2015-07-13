@@ -17,7 +17,7 @@ module.exports = React.createClass({
   },
   render: function(){
       return(
-          <div class='change_name_form'>
+          <div className='change_name_form'>
               <h3> Change Name </h3>
               <form onSubmit={this.handleSubmit}>
                   <input onChange={this.onKey} value={this.state.newName} />

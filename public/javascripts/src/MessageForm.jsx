@@ -14,7 +14,7 @@ module.exports = React.createClass({
       var message = {
           user : this.props.user,
           text : this.state.text
-      }
+      };
       this.props.onMessageSubmit(message);
       this.setState({ text: '' });
   },
@@ -25,7 +25,7 @@ module.exports = React.createClass({
 
   render: function(){
       return(
-          <div class='message_form'>
+          <div className='message_form'>
               <h3>Write New Message</h3>
               <form onSubmit={this.handleSubmit}>
                   <input onChange={this.changeHandler} value={this.state.text} />

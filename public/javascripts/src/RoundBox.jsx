@@ -5,12 +5,6 @@ var ItemsChart = require('./ItemsChart.jsx');
 
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
-
-function LightenDarkenColor(col,amt) {
-    col = parseInt(col,16);
-    return (((col & 0x0000FF) + amt) | ((((col>> 8) & 0x00FF) + amt) << 8) | (((col >> 16) + amt) << 16)).toString(16);
-}
-
 var chartColors = [
   '#3182bd',
   '#6baed6',
@@ -77,6 +71,7 @@ module.exports = React.createClass({
   render: function () {
     return (
       <ReactCSSTransitionGroup transitionName="example" transitionAppear={true}>
+        <a href="auth/steam">login test</a>
         <h1 className="ui header">Round # {this.state.roundId}</h1>
         <div className="ui grid">
           <div className="sixteen wide column">

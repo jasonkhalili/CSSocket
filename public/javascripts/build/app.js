@@ -34052,7 +34052,7 @@ module.exports = React.createClass({displayName: "exports",
   },
   render: function(){
       return(
-          React.createElement("div", {class: "change_name_form"}, 
+          React.createElement("div", {className: "change_name_form"}, 
               React.createElement("h3", null, " Change Name "), 
               React.createElement("form", {onSubmit: this.handleSubmit}, 
                   React.createElement("input", {onChange: this.onKey, value: this.state.newName})
@@ -34257,7 +34257,7 @@ $ = jQuery = require('jquery');
 module.exports = React.createClass({displayName: "exports",
   render: function(){
       return(
-          React.createElement("div", {class: "message"}, 
+          React.createElement("div", {className: "message"}, 
               React.createElement("strong", null, this.props.user), " :", 
               this.props.text
           )
@@ -34282,7 +34282,7 @@ module.exports = React.createClass({displayName: "exports",
       var message = {
           user : this.props.user,
           text : this.state.text
-      }
+      };
       this.props.onMessageSubmit(message);
       this.setState({ text: '' });
   },
@@ -34293,7 +34293,7 @@ module.exports = React.createClass({displayName: "exports",
 
   render: function(){
       return(
-          React.createElement("div", {class: "message_form"}, 
+          React.createElement("div", {className: "message_form"}, 
               React.createElement("h3", null, "Write New Message"), 
               React.createElement("form", {onSubmit: this.handleSubmit}, 
                   React.createElement("input", {onChange: this.changeHandler, value: this.state.text})
@@ -34315,7 +34315,7 @@ module.exports = React.createClass({displayName: "exports",
           );
       };
       return (
-          React.createElement("div", {class: "messages"}, 
+          React.createElement("div", {className: "messages"}, 
               React.createElement("h2", null, " Conversation: "), 
                this.props.messages.map(renderMessage)
           )
@@ -34399,12 +34399,6 @@ var ItemsChart = require('./ItemsChart.jsx');
 
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
-
-function LightenDarkenColor(col,amt) {
-    col = parseInt(col,16);
-    return (((col & 0x0000FF) + amt) | ((((col>> 8) & 0x00FF) + amt) << 8) | (((col >> 16) + amt) << 16)).toString(16);
-}
-
 var chartColors = [
   '#3182bd',
   '#6baed6',
@@ -34471,6 +34465,7 @@ module.exports = React.createClass({displayName: "exports",
   render: function () {
     return (
       React.createElement(ReactCSSTransitionGroup, {transitionName: "example", transitionAppear: true}, 
+        React.createElement("a", {href: "auth/steam"}, "login test"), 
         React.createElement("h1", {className: "ui header"}, "Round # ", this.state.roundId), 
         React.createElement("div", {className: "ui grid"}, 
           React.createElement("div", {className: "sixteen wide column"}, 
@@ -34508,10 +34503,10 @@ $ = jQuery = require('jquery');
 module.exports = React.createClass({displayName: "exports",
   render: function(){
       var renderUser = function(user){
-          return React.createElement("li", null, " ",  user, " ")
+          return React.createElement("li", null, " ", user, " ")
       };
       return (
-          React.createElement("div", {class: "users"}, 
+          React.createElement("div", {className: "users"}, 
               React.createElement("h3", null, " Online Users "), 
               React.createElement("ul", null,  this.props.users.map(renderUser), " ")
           )
@@ -34540,6 +34535,8 @@ React.render(
   React.createElement(Chat, null),
   document.getElementById('chat')
 );
+
+console.log(user);
 
 },{"../../libraries/semantic-ui/dist/semantic.js":246,"./Chat.jsx":234,"./RoundBox.jsx":242,"browser-request":1,"jquery":3,"react/addons":61}],246:[function(require,module,exports){
  /*

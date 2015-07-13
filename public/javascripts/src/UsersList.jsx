@@ -4,10 +4,10 @@ $ = jQuery = require('jquery');
 module.exports = React.createClass({
   render: function(){
       var renderUser = function(user){
-          return <li> { user} </li>
+          return <li> {user} </li>
       };
       return (
-          <div class='users'>
+          <div className='users'>
               <h3> Online Users </h3>
               <ul>{ this.props.users.map(renderUser)} </ul>
           </div>

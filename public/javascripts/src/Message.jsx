@@ -5,7 +5,7 @@ $ = jQuery = require('jquery');
 module.exports = React.createClass({
   render: function(){
       return(
-          <div class="message">
+          <div className="message">
               <strong>{this.props.user}</strong> :
               {this.props.text}
           </div>
