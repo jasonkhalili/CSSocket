@@ -71,7 +71,6 @@ module.exports = React.createClass({
   render: function () {
     return (
       <ReactCSSTransitionGroup transitionName="example" transitionAppear={true}>
-        <a href="auth/steam">login test</a>
         <h1 className="ui header">Round # {this.state.roundId}</h1>
         <div className="ui grid">
           <div className="sixteen wide column">

@@ -1,4 +1,5 @@
 var React =  require('react/addons');
+var Menu = require('./Menu.jsx');
 
 module.exports = React.createClass({
   render: function() {
@@ -8,6 +9,7 @@ module.exports = React.createClass({
           <link rel="stylesheet" href="/stylesheets/css/style.css"/>
         </head>
         <body>
+          <Menu user={this.props.user} />
           <div id="main"></div>
           <div id="chat"></div>
           <script src="/socket.io/socket.io.js"></script>

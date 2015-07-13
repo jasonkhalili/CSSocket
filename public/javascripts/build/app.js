@@ -34465,7 +34465,6 @@ module.exports = React.createClass({displayName: "exports",
   render: function () {
     return (
       React.createElement(ReactCSSTransitionGroup, {transitionName: "example", transitionAppear: true}, 
-        React.createElement("a", {href: "auth/steam"}, "login test"), 
         React.createElement("h1", {className: "ui header"}, "Round # ", this.state.roundId), 
         React.createElement("div", {className: "ui grid"}, 
           React.createElement("div", {className: "sixteen wide column"}, 
