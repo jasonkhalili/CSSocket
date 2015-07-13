@@ -34036,40 +34036,9 @@ module.exports = warning;
 var React = require('react/addons');
 $ = jQuery = require('jquery');
 
-
-module.exports = React.createClass({displayName: "exports",
-  getInitialState: function(){
-      return {newName: ''};
-  },
-  onKey : function(e){
-      this.setState({ newName : e.target.value });
-  },
-  handleSubmit : function(e){
-      e.preventDefault();
-      var newName = this.state.newName;
-      this.props.onChangeName(newName);
-      this.setState({ newName: '' });
-  },
-  render: function(){
-      return(
-          React.createElement("div", {className: "change_name_form"}, 
-              React.createElement("h3", null, " Change Name "), 
-              React.createElement("form", {onSubmit: this.handleSubmit}, 
-                  React.createElement("input", {onChange: this.onKey, value: this.state.newName})
-              )
-          )
-      );
-  }
-});
-
-},{"jquery":3,"react/addons":61}],234:[function(require,module,exports){
-var React = require('react/addons');
-$ = jQuery = require('jquery');
-
 var UsersList = require('./UsersList.jsx');
 var MessageList = require('./MessageList.jsx');
 var MessageForm = require('./MessageForm.jsx');
-var ChangeNameForm = require('./ChangeNameForm.jsx');
 
 var socket = io.connect();
 
@@ -34078,7 +34047,7 @@ var Messages = [];
 
 module.exports = React.createClass({displayName: "exports",
   getInitialState: function(){
-      socket.on('send:message', this.messageRecieve);
+      socket.on('send message', this.messageRecieve);
       return {users: [], messages:[], text: ''};
   },
   messageRecieve: function(message){
@@ -34088,20 +34057,30 @@ module.exports = React.createClass({displayName: "exports",
   handleMessageSubmit : function(message){
       Messages.push(message);
       this.setState({ messages : Messages });
-      socket.emit('send:message', message);
+      socket.emit('send message', message);
   },
   render : function(){
+    if(typeof user === 'undefined') {
       return (
-          React.createElement("div", null, 
-              React.createElement(UsersList, {users: this.state.users}), 
-              React.createElement(MessageList, {messages: this.state.messages}), 
-              React.createElement(MessageForm, {onMessageSubmit: this.handleMessageSubmit})
-          )
+        React.createElement("div", null, 
+          React.createElement(UsersList, {users: this.state.users}), 
+          React.createElement(MessageList, {messages: this.state.messages})
+        )
       );
+    }
+    else {
+      return (
+        React.createElement("div", null, 
+          React.createElement(UsersList, {users: this.state.users}), 
+          React.createElement(MessageList, {messages: this.state.messages}), 
+          React.createElement(MessageForm, {onMessageSubmit: this.handleMessageSubmit})
+        )
+      );
+    }
   }
 });
 
-},{"./ChangeNameForm.jsx":233,"./MessageForm.jsx":238,"./MessageList.jsx":239,"./UsersList.jsx":244,"jquery":3,"react/addons":61}],235:[function(require,module,exports){
+},{"./MessageForm.jsx":237,"./MessageList.jsx":238,"./UsersList.jsx":243,"jquery":3,"react/addons":61}],234:[function(require,module,exports){
 var React = require('react/addons');
 
 module.exports = React.createClass({displayName: "exports",
@@ -34127,7 +34106,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"react/addons":61}],236:[function(require,module,exports){
+},{"react/addons":61}],235:[function(require,module,exports){
 var React = require('react/addons');
 var PlayersBox = require('./PlayersBox.jsx');
 
@@ -34200,7 +34179,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"./PlayersBox.jsx":241,"react/addons":61}],237:[function(require,module,exports){
+},{"./PlayersBox.jsx":240,"react/addons":61}],236:[function(require,module,exports){
 var React = require('react/addons');
 $ = jQuery = require('jquery');
 
@@ -34215,7 +34194,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"jquery":3,"react/addons":61}],238:[function(require,module,exports){
+},{"jquery":3,"react/addons":61}],237:[function(require,module,exports){
 var React = require('react/addons');
 $ = jQuery = require('jquery');
 
@@ -34253,7 +34232,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"jquery":3,"react/addons":61}],239:[function(require,module,exports){
+},{"jquery":3,"react/addons":61}],238:[function(require,module,exports){
 var React = require('react/addons');
 var Message = require('./Message.jsx');
 
@@ -34273,7 +34252,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"./Message.jsx":237,"react/addons":61}],240:[function(require,module,exports){
+},{"./Message.jsx":236,"react/addons":61}],239:[function(require,module,exports){
 var React = require('react/addons');
 var Modal = require('react-semantify').Modal;
 
@@ -34319,7 +34298,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"react-semantify":34,"react/addons":61}],241:[function(require,module,exports){
+},{"react-semantify":34,"react/addons":61}],240:[function(require,module,exports){
 var React = require('react/addons');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var PlayerModal = require('./PlayerModal.jsx');
@@ -34341,7 +34320,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"./PlayerModal.jsx":240,"react/addons":61}],242:[function(require,module,exports){
+},{"./PlayerModal.jsx":239,"react/addons":61}],241:[function(require,module,exports){
 var React = require('react/addons');
 var request = require('browser-request');
 var RoundItems = require('./RoundItems.jsx');
@@ -34427,7 +34406,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"./ItemsChart.jsx":236,"./RoundItems.jsx":243,"browser-request":1,"react/addons":61}],243:[function(require,module,exports){
+},{"./ItemsChart.jsx":235,"./RoundItems.jsx":242,"browser-request":1,"react/addons":61}],242:[function(require,module,exports){
 var React = require('react/addons');
 var ItemCard = require('./ItemCard.jsx');
 
@@ -34445,7 +34424,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"./ItemCard.jsx":235,"react/addons":61}],244:[function(require,module,exports){
+},{"./ItemCard.jsx":234,"react/addons":61}],243:[function(require,module,exports){
 var React = require('react/addons');
 $ = jQuery = require('jquery');
 
@@ -34463,7 +34442,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"jquery":3,"react/addons":61}],245:[function(require,module,exports){
+},{"jquery":3,"react/addons":61}],244:[function(require,module,exports){
 // Libraries
 $ = jQuery = require('jquery');
 require("../../libraries/semantic-ui/dist/semantic.js");
@@ -34485,7 +34464,9 @@ React.render(
   document.getElementById('chat')
 );
 
-},{"../../libraries/semantic-ui/dist/semantic.js":246,"./Chat.jsx":234,"./RoundBox.jsx":242,"browser-request":1,"jquery":3,"react/addons":61}],246:[function(require,module,exports){
+console.log(user);
+
+},{"../../libraries/semantic-ui/dist/semantic.js":245,"./Chat.jsx":233,"./RoundBox.jsx":241,"browser-request":1,"jquery":3,"react/addons":61}],245:[function(require,module,exports){
  /*
  * # Semantic UI - 2.0.0
  * https://github.com/Semantic-Org/Semantic-UI
@@ -55098,4 +55079,4 @@ $.fn.visibility.settings = {
 
 })( jQuery, window , document );
 
-},{}]},{},[245]);
+},{}]},{},[244]);

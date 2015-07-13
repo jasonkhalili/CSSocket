@@ -18,3 +18,5 @@ React.render(
   <Chat />,
   document.getElementById('chat')
 );
+
+console.log(user);

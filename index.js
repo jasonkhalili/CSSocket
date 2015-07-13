@@ -58,8 +58,8 @@ app.get('/auth/steam/return',
   });
 
 io.on('connection', function(socket) {
-  socket.on('send:message', function(data) {
-    socket.broadcast.emit('send:message', {
+  socket.on('send message', function(data) {
+    socket.broadcast.emit('send message', {
       message: data
     });
   });

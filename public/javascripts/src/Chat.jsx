@@ -4,7 +4,6 @@ $ = jQuery = require('jquery');
 var UsersList = require('./UsersList.jsx');
 var MessageList = require('./MessageList.jsx');
 var MessageForm = require('./MessageForm.jsx');
-var ChangeNameForm = require('./ChangeNameForm.jsx');
 
 var socket = io.connect();
 
@@ -13,7 +12,7 @@ var Messages = [];
 
 module.exports = React.createClass({
   getInitialState: function(){
-      socket.on('send:message', this.messageRecieve);
+      socket.on('send message', this.messageRecieve);
       return {users: [], messages:[], text: ''};
   },
   messageRecieve: function(message){
@@ -23,15 +22,25 @@ module.exports = React.createClass({
   handleMessageSubmit : function(message){
       Messages.push(message);
       this.setState({ messages : Messages });
-      socket.emit('send:message', message);
+      socket.emit('send message', message);
   },
   render : function(){
+    if(typeof user === 'undefined') {
       return (
-          <div>
-              <UsersList users={this.state.users} />
-              <MessageList messages={this.state.messages} />
-              <MessageForm onMessageSubmit={this.handleMessageSubmit} />
-          </div>
+        <div>
+          <UsersList users={this.state.users} />
+          <MessageList messages={this.state.messages} />
+        </div>
       );
+    }
+    else {
+      return (
+        <div>
+          <UsersList users={this.state.users} />
+          <MessageList messages={this.state.messages} />
+          <MessageForm onMessageSubmit={this.handleMessageSubmit} />
+        </div>
+      );
+    }
   }
 });
