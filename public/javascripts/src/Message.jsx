@@ -6,7 +6,8 @@ module.exports = React.createClass({
   render: function(){
       return(
           <div className="message">
-            <strong>{this.props.user}</strong> :
+            <img className="ui image avatar" src={this.props.user._json.avatar}/>
+            <strong>{this.props.user._json.personaname}</strong> :
             {this.props.text}
           </div>
       );

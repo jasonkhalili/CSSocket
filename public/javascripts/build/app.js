@@ -34188,7 +34188,8 @@ module.exports = React.createClass({displayName: "exports",
   render: function(){
       return(
           React.createElement("div", {className: "message"}, 
-            React.createElement("strong", null, this.props.user), " :", 
+            React.createElement("img", {className: "ui image avatar", src: this.props.user._json.avatar}), 
+            React.createElement("strong", null, this.props.user._json.personaname), " :", 
             this.props.text
           )
       );
@@ -34210,7 +34211,7 @@ module.exports = React.createClass({displayName: "exports",
   handleSubmit : function(e){
       e.preventDefault();
       var message = {
-          user : this.props.user._json.personaname,
+          user : this.props.user,
           text : this.state.text
       };
       this.props.onMessageSubmit(message);
