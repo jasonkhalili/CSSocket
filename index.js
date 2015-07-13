@@ -6,8 +6,10 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var socket = require('./socket.js');
 var session = require('express-session');
+var React = require('react/addons');
 var passport = require('passport');
 var SteamStrategy = require('passport-steam').Strategy;
+require('node-jsx').install();
 
 app.use(session({
   secret: 'keyboard cat'
@@ -40,8 +42,15 @@ passport.use(new SteamStrategy({
   }
 ));
 
+// var Base = require('./Base.jsx');
+// var markup = React.renderToString(
+//   Base({
+//     user: 'test'
+//   })
+// );
+
 app.get('/', function(req, res){
-  res.render('index');
+  res.render('index',{markup: req.user});
 });
 
 app.get('/auth/steam',

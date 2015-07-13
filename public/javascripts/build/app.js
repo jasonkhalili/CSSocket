@@ -34536,8 +34536,6 @@ React.render(
   document.getElementById('chat')
 );
 
-console.log(user);
-
 },{"../../libraries/semantic-ui/dist/semantic.js":246,"./Chat.jsx":234,"./RoundBox.jsx":242,"browser-request":1,"jquery":3,"react/addons":61}],246:[function(require,module,exports){
  /*
  * # Semantic UI - 2.0.0
