@@ -1,6 +1,8 @@
 var React = require('react/addons');
 
 module.exports = React.createClass({
+  componentDidMount: function() {
+  },
   render: function() {
     if(typeof this.props.user === 'undefined'){
       return (

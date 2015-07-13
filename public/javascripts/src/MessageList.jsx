@@ -5,7 +5,7 @@ module.exports = React.createClass({
   render: function(){
       var renderMessage = function(message){
           return (
-            <Message user={message.user} text={message.text} />
+            <Message text={message} />
           );
       };
       return (

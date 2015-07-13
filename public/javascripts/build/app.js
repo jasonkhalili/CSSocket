@@ -34078,73 +34078,24 @@ var Messages = [];
 
 module.exports = React.createClass({displayName: "exports",
   getInitialState: function(){
-      socket.on('init', this.initialize);
       socket.on('send:message', this.messageRecieve);
-      socket.on('user:join', this.userJoined);
-      socket.on('user:left', this.userLeft);
-      socket.on('change:name', this.userChangedName);
       return {users: [], messages:[], text: ''};
-  },
-  initialize: function(data){
-      Users = data.users;
-      this.setState({ users: Users, user: data.name});
   },
   messageRecieve: function(message){
       Messages.push(message);
       this.setState({ messages : Messages });
-  },
-  userJoined: function(data){
-      Users.push(data.name);
-      Messages.push({
-          user: 'APLICATION BOT',
-          text : data.name +' Joined'
-      });
-      this.setState({ users : Users, messages: Messages});
-  },
-  userLeft: function(data){
-      var index = Users.indexOf(data.name);
-      Users.splice(index, 1);
-      Messages.push({
-          user: 'APLICATION BOT',
-          text : data.name +' Left'
-      });
-      this.setState({ users : Users, messages: Messages});
-  },
-  userChangedName : function(data){
-      var oldName = data.oldName;
-      var newName = data.newName;
-      Users.splice(Users.indexOf(oldName), 1, newName);
-      Messages.push({
-          user: 'APLICATION BOT',
-          text : 'Change Name : ' + oldName + ' ==> '+ newName
-      });
-      this.setState({ users : Users, messages: Messages});
   },
   handleMessageSubmit : function(message){
       Messages.push(message);
       this.setState({ messages : Messages });
       socket.emit('send:message', message);
   },
-  handleChangeName : function(newName){
-      var that = this;
-      var oldName = this.state.user;
-      socket.emit('change:name', { name : newName}, function(result){
-          if(!result){
-              alert('There was an error changing your name');
-          }else{
-              var index = Users.indexOf(oldName);
-              Users.splice(index, 1, newName);
-              that.setState({users : Users});
-          }
-      });
-  },
   render : function(){
       return (
           React.createElement("div", null, 
               React.createElement(UsersList, {users: this.state.users}), 
               React.createElement(MessageList, {messages: this.state.messages}), 
-              React.createElement(MessageForm, {onMessageSubmit: this.handleMessageSubmit, user: this.state.user}), 
-              React.createElement(ChangeNameForm, {onChangeName: this.handleChangeName})
+              React.createElement(MessageForm, {onMessageSubmit: this.handleMessageSubmit})
           )
       );
   }
@@ -34258,7 +34209,6 @@ module.exports = React.createClass({displayName: "exports",
   render: function(){
       return(
           React.createElement("div", {className: "message"}, 
-              React.createElement("strong", null, this.props.user), " :", 
               this.props.text
           )
       );
@@ -34311,7 +34261,7 @@ module.exports = React.createClass({displayName: "exports",
   render: function(){
       var renderMessage = function(message){
           return (
-            React.createElement(Message, {user: message.user, text: message.text})
+            React.createElement(Message, {text: message})
           );
       };
       return (

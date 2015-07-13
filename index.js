@@ -4,7 +4,7 @@ var exphbs = require('express-handlebars');
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var socket = require('./socket.js');
+// var socket = require('./socket.js');
 var session = require('express-session');
 var React = require('react/addons');
 var passport = require('passport');
@@ -57,7 +57,13 @@ app.get('/auth/steam/return',
     res.redirect('/');
   });
 
-io.sockets.on('connection', socket);
+io.on('connection', function(socket) {
+  socket.on('send:message', function(data) {
+    socket.broadcast.emit('send:message', {
+      message: data
+    });
+  });
+});
 
 http.listen(4000, function(){
   console.log('listening on *:4000');
