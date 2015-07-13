@@ -1,0 +1,12 @@
+@import "../../libraries/semantic-ui/dist/semantic.css";
+@import "../../libraries/perfect-scrollbar/css/perfect-scrollbar";
+
+// example animation for React testing
+.example-appear {
+  opacity: 0.01;
+  transition: opacity 1s ease-in;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+}
