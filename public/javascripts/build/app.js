@@ -34282,7 +34282,7 @@ module.exports = React.createClass({displayName: "exports",
       };
       return (
           React.createElement("div", {className: "ui feed"}, 
-              React.createElement("h2", {className: "ui header"}, "Chat"), 
+              React.createElement("h2", {className: "ui header center aligned"}, "Chat:"), 
               this.props.messages.map(renderMessage)
           )
       );
