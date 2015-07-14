@@ -6,7 +6,10 @@ module.exports = React.createClass({
   render: function() {
     if(this.props.user === 'no user'){
       return (
-        <a className="ui button inverted blue" href="auth/steam">Login</a>
+        <a className="ui basic button" href="auth/steam">
+          <i className="sign in icon"/>
+          Login
+        </a>
       );
     }
     else {

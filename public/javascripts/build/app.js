@@ -34052,16 +34052,22 @@ module.exports = React.createClass({displayName: "exports",
   messageRecieve: function(message){
       Messages.push(message);
       this.setState({ messages : Messages });
+      this.scrollCont();
   },
   handleMessageSubmit : function(message){
       Messages.push(message);
       this.setState({ messages : Messages });
       socket.emit('send message', message);
+      this.scrollCont();
+  },
+  scrollCont: function() {
+    var objDiv = document.getElementById("chat");
+    objDiv.scrollTop = objDiv.scrollHeight;
   },
   render : function(){
     if(user === 'no user') {
       return (
-        React.createElement("div", null, 
+        React.createElement("div", {className: "chatContent"}, 
           React.createElement(MessageList, {messages: this.state.messages})
         )
       );
@@ -34084,18 +34090,23 @@ module.exports = React.createClass({displayName: "exports",
   handleClick: function() {
     console.log('in show');
     $('.sidebar.chat')
+      .sidebar('toggle')
+    ;
+  },
+  componentDidMount: function() {
+    $('.sidebar.chat')
       .sidebar(({
         transition: 'overlay',
         exclusive: true,
         dimPage: false
       }))
-      .sidebar('toggle')
     ;
   },
   render: function() {
     return (
-      React.createElement("div", {className: "ui button blue inverted", onClick: this.handleClick}, 
-        "Chat Toggle"
+      React.createElement("div", {className: "ui basic button", onClick: this.handleClick}, 
+        React.createElement("i", {className: "comment icon"}), 
+        "Chat"
       )
     );
   }
@@ -34115,7 +34126,7 @@ module.exports = React.createClass({displayName: "exports",
     var itemPrice = item.median_price;
     var cardStyle = {borderBottom: "4px solid #" + item.name_color};
     return (
-      React.createElement("a", {className: "ui card", "data-content": item.name, style: cardStyle}, 
+      React.createElement("div", {className: "ui card", "data-content": item.name, style: cardStyle}, 
         React.createElement("div", {className: "ui image content"}, 
           React.createElement("img", {src: itemURL}), 
           React.createElement("div", {className: "center aligned"}, 
@@ -34232,7 +34243,6 @@ $ = jQuery = require('jquery');
 var socket = io.connect();
 
 module.exports = React.createClass({displayName: "exports",
-
   getInitialState: function(){
       return {text: ''};
   },
@@ -34422,8 +34432,8 @@ module.exports = React.createClass({displayName: "exports",
     return (
       React.createElement(ReactCSSTransitionGroup, {transitionName: "example", transitionAppear: true}, 
         React.createElement("h1", {className: "ui header"}, "Round # ", this.state.roundId), 
-        React.createElement("div", {className: "ui grid"}, 
-          React.createElement("div", {className: "sixteen wide column"}, 
+        React.createElement("div", null, 
+          React.createElement("div", null, 
             React.createElement(RoundItems, {items: this.state.allItems})
           ), 
           React.createElement(ItemsChart, {itemChartData: this.state.itemChartData, players: this.state.players})
@@ -34440,7 +34450,7 @@ var ItemCard = require('./ItemCard.jsx');
 module.exports = React.createClass({displayName: "exports",
   render: function() {
     return (
-      React.createElement("div", {className: "ui cards"}, 
+      React.createElement("div", {className: "ui itemsRow"}, 
         this.props.items.map(function(item) {
           return (
             React.createElement(ItemCard, {item: item})

@@ -17,16 +17,22 @@ module.exports = React.createClass({
   messageRecieve: function(message){
       Messages.push(message);
       this.setState({ messages : Messages });
+      this.scrollCont();
   },
   handleMessageSubmit : function(message){
       Messages.push(message);
       this.setState({ messages : Messages });
       socket.emit('send message', message);
+      this.scrollCont();
+  },
+  scrollCont: function() {
+    var objDiv = document.getElementById("chat");
+    objDiv.scrollTop = objDiv.scrollHeight;
   },
   render : function(){
     if(user === 'no user') {
       return (
-        <div>
+        <div className="chatContent">
           <MessageList messages={this.state.messages} />
         </div>
       );

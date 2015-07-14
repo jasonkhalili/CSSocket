@@ -14,7 +14,7 @@ module.exports = React.createClass({
           <link rel="stylesheet" href="/stylesheets/css/style.css"/>
         </head>
         <body>
-          <div id="chat" className="ui left vertical inverted sidebar chat"></div>
+          <div id="chat" className="ui vertical sidebar right chat"></div>
           <div className="pusher">
             <Menu className="fixed" user={this.props.user} />
             <div id="main"></div>

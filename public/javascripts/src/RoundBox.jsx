@@ -72,8 +72,8 @@ module.exports = React.createClass({
     return (
       <ReactCSSTransitionGroup transitionName="example" transitionAppear={true}>
         <h1 className="ui header">Round # {this.state.roundId}</h1>
-        <div className="ui grid">
-          <div className="sixteen wide column">
+        <div>
+          <div>
             <RoundItems items={this.state.allItems}/>
           </div>
           <ItemsChart itemChartData={this.state.itemChartData} players={this.state.players}/>

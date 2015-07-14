@@ -4,7 +4,6 @@ $ = jQuery = require('jquery');
 var socket = io.connect();
 
 module.exports = React.createClass({
-
   getInitialState: function(){
       return {text: ''};
   },
