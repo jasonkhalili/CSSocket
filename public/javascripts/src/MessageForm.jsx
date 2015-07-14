@@ -8,7 +8,6 @@ module.exports = React.createClass({
   getInitialState: function(){
       return {text: ''};
   },
-
   handleSubmit : function(e){
       e.preventDefault();
       var message = {
@@ -18,14 +17,12 @@ module.exports = React.createClass({
       this.props.onMessageSubmit(message);
       this.setState({ text: '' });
   },
-
   changeHandler : function(e){
       this.setState({ text : e.target.value });
   },
-
   render: function(){
       return(
-          <div className='ui bound bottom sticky message_form'>
+          <div className='message_form'>
               <form className="ui fluid mini input" onSubmit={this.handleSubmit}>
                   <input onChange={this.changeHandler} placeholder="chat" value={this.state.text} />
               </form>

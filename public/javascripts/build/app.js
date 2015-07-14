@@ -34068,7 +34068,7 @@ module.exports = React.createClass({displayName: "exports",
     }
     else {
       return (
-        React.createElement("div", null, 
+        React.createElement("div", {className: "chatContent"}, 
           React.createElement(MessageList, {messages: this.state.messages}), 
           React.createElement(MessageForm, {onMessageSubmit: this.handleMessageSubmit, user: user})
         )
@@ -34236,7 +34236,6 @@ module.exports = React.createClass({displayName: "exports",
   getInitialState: function(){
       return {text: ''};
   },
-
   handleSubmit : function(e){
       e.preventDefault();
       var message = {
@@ -34246,14 +34245,12 @@ module.exports = React.createClass({displayName: "exports",
       this.props.onMessageSubmit(message);
       this.setState({ text: '' });
   },
-
   changeHandler : function(e){
       this.setState({ text : e.target.value });
   },
-
   render: function(){
       return(
-          React.createElement("div", {className: "ui bound bottom sticky message_form"}, 
+          React.createElement("div", {className: "message_form"}, 
               React.createElement("form", {className: "ui fluid mini input", onSubmit: this.handleSubmit}, 
                   React.createElement("input", {onChange: this.changeHandler, placeholder: "chat", value: this.state.text})
               )

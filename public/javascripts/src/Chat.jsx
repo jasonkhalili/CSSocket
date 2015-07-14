@@ -33,7 +33,7 @@ module.exports = React.createClass({
     }
     else {
       return (
-        <div>
+        <div className="chatContent">
           <MessageList messages={this.state.messages} />
           <MessageForm onMessageSubmit={this.handleMessageSubmit} user={user}/>
         </div>
