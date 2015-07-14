@@ -1,7 +1,6 @@
 var React = require('react/addons');
 $ = jQuery = require('jquery');
 
-var UsersList = require('./UsersList.jsx');
 var MessageList = require('./MessageList.jsx');
 var MessageForm = require('./MessageForm.jsx');
 
@@ -28,7 +27,6 @@ module.exports = React.createClass({
     if(user === 'no user') {
       return (
         <div>
-          <UsersList users={this.state.users} />
           <MessageList messages={this.state.messages} />
         </div>
       );
@@ -36,7 +34,6 @@ module.exports = React.createClass({
     else {
       return (
         <div>
-          <UsersList users={this.state.users} />
           <MessageList messages={this.state.messages} />
           <MessageForm onMessageSubmit={this.handleMessageSubmit} user={user}/>
         </div>

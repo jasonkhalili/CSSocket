@@ -34036,7 +34036,6 @@ module.exports = warning;
 var React = require('react/addons');
 $ = jQuery = require('jquery');
 
-var UsersList = require('./UsersList.jsx');
 var MessageList = require('./MessageList.jsx');
 var MessageForm = require('./MessageForm.jsx');
 
@@ -34063,7 +34062,6 @@ module.exports = React.createClass({displayName: "exports",
     if(user === 'no user') {
       return (
         React.createElement("div", null, 
-          React.createElement(UsersList, {users: this.state.users}), 
           React.createElement(MessageList, {messages: this.state.messages})
         )
       );
@@ -34071,7 +34069,6 @@ module.exports = React.createClass({displayName: "exports",
     else {
       return (
         React.createElement("div", null, 
-          React.createElement(UsersList, {users: this.state.users}), 
           React.createElement(MessageList, {messages: this.state.messages}), 
           React.createElement(MessageForm, {onMessageSubmit: this.handleMessageSubmit, user: user})
         )
@@ -34080,7 +34077,31 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"./MessageForm.jsx":237,"./MessageList.jsx":238,"./UsersList.jsx":243,"jquery":3,"react/addons":61}],234:[function(require,module,exports){
+},{"./MessageForm.jsx":238,"./MessageList.jsx":239,"jquery":3,"react/addons":61}],234:[function(require,module,exports){
+var React = require('react/addons');
+
+module.exports = React.createClass({displayName: "exports",
+  handleClick: function() {
+    console.log('in show');
+    $('.sidebar.chat')
+      .sidebar(({
+        transition: 'overlay',
+        exclusive: true,
+        dimPage: false
+      }))
+      .sidebar('toggle')
+    ;
+  },
+  render: function() {
+    return (
+      React.createElement("div", {className: "ui button blue inverted", onClick: this.handleClick}, 
+        "Chat Toggle"
+      )
+    );
+  }
+});
+
+},{"react/addons":61}],235:[function(require,module,exports){
 var React = require('react/addons');
 
 module.exports = React.createClass({displayName: "exports",
@@ -34106,7 +34127,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"react/addons":61}],235:[function(require,module,exports){
+},{"react/addons":61}],236:[function(require,module,exports){
 var React = require('react/addons');
 var PlayersBox = require('./PlayersBox.jsx');
 
@@ -34179,7 +34200,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"./PlayersBox.jsx":240,"react/addons":61}],236:[function(require,module,exports){
+},{"./PlayersBox.jsx":241,"react/addons":61}],237:[function(require,module,exports){
 var React = require('react/addons');
 $ = jQuery = require('jquery');
 
@@ -34204,7 +34225,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"jquery":3,"react/addons":61}],237:[function(require,module,exports){
+},{"jquery":3,"react/addons":61}],238:[function(require,module,exports){
 var React = require('react/addons');
 $ = jQuery = require('jquery');
 
@@ -34232,17 +34253,16 @@ module.exports = React.createClass({displayName: "exports",
 
   render: function(){
       return(
-          React.createElement("div", {className: "message_form"}, 
-              React.createElement("h3", null, "Write New Message"), 
-              React.createElement("form", {onSubmit: this.handleSubmit}, 
-                  React.createElement("input", {onChange: this.changeHandler, value: this.state.text})
+          React.createElement("div", {className: "ui bound bottom sticky message_form"}, 
+              React.createElement("form", {className: "ui fluid mini input", onSubmit: this.handleSubmit}, 
+                  React.createElement("input", {onChange: this.changeHandler, placeholder: "chat", value: this.state.text})
               )
           )
       );
   }
 });
 
-},{"jquery":3,"react/addons":61}],238:[function(require,module,exports){
+},{"jquery":3,"react/addons":61}],239:[function(require,module,exports){
 var React = require('react/addons');
 var Message = require('./Message.jsx');
 
@@ -34255,14 +34275,14 @@ module.exports = React.createClass({displayName: "exports",
       };
       return (
           React.createElement("div", {className: "ui feed"}, 
-              React.createElement("h2", null, " Conversation: "), 
-               this.props.messages.map(renderMessage)
+              React.createElement("h2", {className: "ui header"}, "Chat"), 
+              this.props.messages.map(renderMessage)
           )
       );
   }
 });
 
-},{"./Message.jsx":236,"react/addons":61}],239:[function(require,module,exports){
+},{"./Message.jsx":237,"react/addons":61}],240:[function(require,module,exports){
 var React = require('react/addons');
 var Modal = require('react-semantify').Modal;
 
@@ -34308,7 +34328,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"react-semantify":34,"react/addons":61}],240:[function(require,module,exports){
+},{"react-semantify":34,"react/addons":61}],241:[function(require,module,exports){
 var React = require('react/addons');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var PlayerModal = require('./PlayerModal.jsx');
@@ -34330,7 +34350,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"./PlayerModal.jsx":239,"react/addons":61}],241:[function(require,module,exports){
+},{"./PlayerModal.jsx":240,"react/addons":61}],242:[function(require,module,exports){
 var React = require('react/addons');
 var request = require('browser-request');
 var RoundItems = require('./RoundItems.jsx');
@@ -34416,7 +34436,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"./ItemsChart.jsx":235,"./RoundItems.jsx":242,"browser-request":1,"react/addons":61}],242:[function(require,module,exports){
+},{"./ItemsChart.jsx":236,"./RoundItems.jsx":243,"browser-request":1,"react/addons":61}],243:[function(require,module,exports){
 var React = require('react/addons');
 var ItemCard = require('./ItemCard.jsx');
 
@@ -34434,25 +34454,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"./ItemCard.jsx":234,"react/addons":61}],243:[function(require,module,exports){
-var React = require('react/addons');
-$ = jQuery = require('jquery');
-
-module.exports = React.createClass({displayName: "exports",
-  render: function(){
-      var renderUser = function(user){
-          return React.createElement("li", null, " ", user, " ")
-      };
-      return (
-          React.createElement("div", {className: "users"}, 
-              React.createElement("h3", null, " Online Users "), 
-              React.createElement("ul", null,  this.props.users.map(renderUser), " ")
-          )
-      );
-  }
-});
-
-},{"jquery":3,"react/addons":61}],244:[function(require,module,exports){
+},{"./ItemCard.jsx":235,"react/addons":61}],244:[function(require,module,exports){
 // Libraries
 $ = jQuery = require('jquery');
 require("../../libraries/semantic-ui/dist/semantic.js");
@@ -34463,6 +34465,7 @@ var React = require('react/addons');
 // React Components
 var RoundBox = require('./RoundBox.jsx');
 var Chat = require('./Chat.jsx');
+var ChatToggle = require('./ChatToggle.jsx');
 
 React.render(
   React.createElement(RoundBox, null),
@@ -34474,7 +34477,12 @@ React.render(
   document.getElementById('chat')
 );
 
-},{"../../libraries/semantic-ui/dist/semantic.js":245,"./Chat.jsx":233,"./RoundBox.jsx":241,"browser-request":1,"jquery":3,"react/addons":61}],245:[function(require,module,exports){
+React.render(
+  React.createElement(ChatToggle, null),
+  document.getElementById('chatToggle')
+);
+
+},{"../../libraries/semantic-ui/dist/semantic.js":245,"./Chat.jsx":233,"./ChatToggle.jsx":234,"./RoundBox.jsx":242,"browser-request":1,"jquery":3,"react/addons":61}],245:[function(require,module,exports){
  /*
  * # Semantic UI - 2.0.0
  * https://github.com/Semantic-Org/Semantic-UI

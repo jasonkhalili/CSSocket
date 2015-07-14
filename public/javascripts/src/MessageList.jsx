@@ -10,8 +10,8 @@ module.exports = React.createClass({
       };
       return (
           <div className='ui feed'>
-              <h2> Conversation: </h2>
-              { this.props.messages.map(renderMessage)}
+              <h2 className="ui header">Chat</h2>
+              {this.props.messages.map(renderMessage)}
           </div>
       );
   }

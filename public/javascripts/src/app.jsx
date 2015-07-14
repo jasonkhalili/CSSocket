@@ -8,6 +8,7 @@ var React = require('react/addons');
 // React Components
 var RoundBox = require('./RoundBox.jsx');
 var Chat = require('./Chat.jsx');
+var ChatToggle = require('./ChatToggle.jsx');
 
 React.render(
   <RoundBox />,
@@ -17,4 +18,9 @@ React.render(
 React.render(
   <Chat />,
   document.getElementById('chat')
+);
+
+React.render(
+  <ChatToggle />,
+  document.getElementById('chatToggle')
 );

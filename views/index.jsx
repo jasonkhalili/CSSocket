@@ -14,9 +14,11 @@ module.exports = React.createClass({
           <link rel="stylesheet" href="/stylesheets/css/style.css"/>
         </head>
         <body>
-          <Menu user={this.props.user} />
-          <div id="main"></div>
-          <div id="chat"></div>
+          <div id="chat" className="ui left vertical inverted sidebar chat"></div>
+          <div className="pusher">
+            <Menu className="fixed" user={this.props.user} />
+            <div id="main"></div>
+          </div>
 
           <script dangerouslySetInnerHTML={{__html:
                 'var user = ' + userString + ';'

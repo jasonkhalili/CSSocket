@@ -8,6 +8,9 @@ module.exports = React.createClass({
         <div className="header item">
           CSGO: Website
         </div>
+        <div className="ui right item" onClick={this.handleClick1}>
+          <div id="chatToggle"></div>
+        </div>
         <div className="ui right item">
           <User user={this.props.user}/>
         </div>

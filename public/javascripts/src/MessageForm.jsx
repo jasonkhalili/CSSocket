@@ -25,10 +25,9 @@ module.exports = React.createClass({
 
   render: function(){
       return(
-          <div className='message_form'>
-              <h3>Write New Message</h3>
-              <form onSubmit={this.handleSubmit}>
-                  <input onChange={this.changeHandler} value={this.state.text} />
+          <div className='ui bound bottom sticky message_form'>
+              <form className="ui fluid mini input" onSubmit={this.handleSubmit}>
+                  <input onChange={this.changeHandler} placeholder="chat" value={this.state.text} />
               </form>
           </div>
       );
