@@ -9,7 +9,7 @@ module.exports = React.createClass({
           );
       };
       return (
-          <div className='messages'>
+          <div className='ui feed'>
               <h2> Conversation: </h2>
               { this.props.messages.map(renderMessage)}
           </div>

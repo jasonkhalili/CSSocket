@@ -34187,10 +34187,18 @@ $ = jQuery = require('jquery');
 module.exports = React.createClass({displayName: "exports",
   render: function(){
       return(
-          React.createElement("div", {className: "message"}, 
-            React.createElement("img", {className: "ui image avatar", src: this.props.user._json.avatar}), 
-            React.createElement("strong", null, this.props.user._json.personaname), " :", 
-            this.props.text
+          React.createElement("div", {className: "event"}, 
+            React.createElement("div", {className: "label"}, 
+              React.createElement("img", {className: "image top aligned", src: this.props.user._json.avatar})
+            ), 
+            React.createElement("div", {className: "content"}, 
+              React.createElement("div", {className: "summary"}, 
+                this.props.user._json.personaname, ":"
+              ), 
+              React.createElement("div", {className: "extra text"}, 
+                this.props.text
+              )
+            )
           )
       );
   }
@@ -34246,7 +34254,7 @@ module.exports = React.createClass({displayName: "exports",
           );
       };
       return (
-          React.createElement("div", {className: "messages"}, 
+          React.createElement("div", {className: "ui feed"}, 
               React.createElement("h2", null, " Conversation: "), 
                this.props.messages.map(renderMessage)
           )
