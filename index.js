@@ -1,10 +1,8 @@
 var express = require('express');
 var path = require('path');
-var exphbs = require('express-handlebars');
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-// var socket = require('./socket.js');
 var session = require('express-session');
 var React = require('react/addons');
 var passport = require('passport');
