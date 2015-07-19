@@ -1,0 +1,8 @@
+web:
+  build: .
+  ports:
+   - "4000:4000"
+  volumes:
+   - .:/cssocket
+  env_file:
+    - ./.env
