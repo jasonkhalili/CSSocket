@@ -30,3 +30,6 @@ node_modules
 
 # JetBrains IDE config
 .idea
+
+# env variable config
+/*.env
