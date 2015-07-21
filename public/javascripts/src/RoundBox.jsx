@@ -30,7 +30,7 @@ var chartColors = [
 
 module.exports = React.createClass({
   loadCurrentRoundFromServer: function () {
-    request({url: 'http://54.67.65.16:32789/api/currentround', json:true}, function(error, response, data) {
+    request({url: 'http://csrest.herokuapp.com/api/currentround', json:true}, function(error, response, data) {
       if(error) {
         console.log(error);
       }
